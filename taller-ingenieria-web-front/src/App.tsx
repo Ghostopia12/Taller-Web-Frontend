@@ -4,15 +4,16 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Header from './Components/Header/Header'
 import RouterConfig from './RouterConfig'
+import Sidenav from './Components/Sidenav/Sidenav'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <>
-     <Header/>
+    <main className="main">
+     <Sidenav/>
      <RouterConfig/>
-    </>
+    </main>
   )
 }
 
