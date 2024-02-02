@@ -1,21 +1,35 @@
-import React from 'react'
-import { Route, Routes } from 'react-router-dom'
-import Inicio from './Components/Inicio/Inicio'
-import Pagar from './Components/Contabilidad/Pagar/Pagar'
-import Reservar from './Components/Contabilidad/Reservar/Reservar'
-import Gastos from './Components/Contabilidad/Gastos/Gastos'
+import { Route, Routes } from "react-router-dom";
+import Inicio from "./Components/Inicio/Inicio";
+import Pagar from "./Components/Contabilidad/Pagar/Pagar";
+import Reservar from "./Components/Contabilidad/Reservar/Reservar";
+import Gastos from "./Components/Contabilidad/Gastos/Gastos";
+import ProtectedRoute from "./protectedRoute/ProtectedRoute";
+import NotFound from "./Components/NotFound/NotFound";
 
 const RouterConfig = () => {
+
+  const isAuthenticated = () => {
+    return true;
+  }
+  
   return (
     <>
-    <Routes>
+      <Routes>
         <Route path="/" element={<Inicio />} />
-        <Route path="/pagar" element={<Pagar />} />
-        <Route path="/reservar" element={<Reservar />} />
-        <Route path="/gastos" element={<Gastos />} />
-    </Routes>
+        <Route element={<ProtectedRoute canActivate={isAuthenticated()} />}>
+          <Route path="/pagar" element={<Pagar />} />
+        </Route>
+        <Route element={<ProtectedRoute canActivate={isAuthenticated()} />}>
+          <Route path="/reservar" element={<Reservar />} />
+        </Route>
+        <Route element={<ProtectedRoute canActivate={isAuthenticated()} />}>
+          <Route path="/gastos" element={<Gastos />} />
+        </Route>
+        <Route path="/404" element = { <NotFound/>} />
+        <Route path="*" element={<NotFound/>} />
+      </Routes>
     </>
-  )
-}
+  );
+};
 
-export default RouterConfig
+export default RouterConfig;
