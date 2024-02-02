@@ -15,16 +15,12 @@ const RouterConfig = () => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Inicio />} />
         <Route element={<ProtectedRoute canActivate={isAuthenticated()} />}>
           <Route path="/pagar" element={<Pagar />} />
-        </Route>
-        <Route element={<ProtectedRoute canActivate={isAuthenticated()} />}>
           <Route path="/reservar" element={<Reservar />} />
-        </Route>
-        <Route element={<ProtectedRoute canActivate={isAuthenticated()} />}>
           <Route path="/gastos" element={<Gastos />} />
         </Route>
+        <Route path="/" element={<Inicio />} />
         <Route path="/404" element = { <NotFound/>} />
         <Route path="*" element={<NotFound/>} />
       </Routes>
