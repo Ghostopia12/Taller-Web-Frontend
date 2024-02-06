@@ -1,0 +1,30 @@
+.login-container{
+height: 100vh;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    input{
+        padding: 0.5rem;
+        font-size: 1.5rem;
+        border: 1px solid #B4B4B4;
+        border-radius: 4px;
+        outline: none;
+    }
+    button{
+        padding: 0.5rem;
+        font-size: 1.5rem;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+}
+    
+}
+main{
+    flex: 1;
+    height: 100vh;
+}
