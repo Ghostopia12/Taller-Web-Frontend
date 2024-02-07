@@ -1,10 +1,21 @@
 #sideNav{
     background-color: #385284;    
-    height: 100vh;
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    transition: all 0.15s ease-out;
+    button{
+        background-color: #385284;
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        padding-left: 0;
+        font-size: 1.5rem;
+        max-width: 48px;
+        cursor: pointer;
+        transition: background-color 0.15s ease-out;
+    }
 }
 .ul{
     list-style: none;
@@ -18,4 +29,21 @@ a{
     text-decoration: none;
     color: white;
     font-size: 1.5rem;
+}
+
+
+.exit{
+    position: absolute;
+    bottom: 40px;
+}
+
+*{
+    font-family: 'Roboto', sans-serif;
+}
+
+button{
+    background-color: #385284;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
 }
