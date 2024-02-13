@@ -7,6 +7,7 @@ import ProtectedRoute from "./protectedRoute/ProtectedRoute";
 import NotFound from "./Components/NotFound/NotFound";
 import { isAuthenticated } from './utils/Authentication.js';
 import Login from "./Components/Login/Login.js";
+import Register from "./Components/Register/Register.js";
 const RouterConfig = () => {
   
   return (
@@ -18,6 +19,7 @@ const RouterConfig = () => {
           <Route path="/gastos" element={<Gastos />} />
         </Route>
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/" element={<Inicio />} />
         <Route path="/404" element = { <NotFound/>} />
         <Route path="*" element={<NotFound/>} />
