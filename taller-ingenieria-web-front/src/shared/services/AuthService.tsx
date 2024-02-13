@@ -9,6 +9,7 @@ interface RegisterCredentials {
   username: string;
   password: string;
   email: string;
+  role: string;
 }
 
 export const login = async (credentials: LoginCredentials) => {

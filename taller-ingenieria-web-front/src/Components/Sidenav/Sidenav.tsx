@@ -10,6 +10,7 @@ import {
   faHouse,
   faRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
+import { isAuthenticated } from "../../utils/Authentication";
 
 const Sidenav = () => {
   const [navbarWidth, setNavbarWidth] = useState(300);
@@ -73,7 +74,10 @@ const Sidenav = () => {
           </NavLink>
         ) : (
           <>
-          <NavLink to="/login">Logout&Login</NavLink>
+          
+          {
+            isAuthenticated() ? <NavLink to="/logout">Logout</NavLink> : <NavLink to="/login">Login</NavLink>
+          }
           <NavLink to="/register">Register</NavLink>
           </>
         )}

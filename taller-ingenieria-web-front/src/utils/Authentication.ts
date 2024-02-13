@@ -1,3 +1,12 @@
 export const isAuthenticated  = () => {
-    return true;
+    const token = localStorage.getItem('token');
+    if (token) {
+        return true;
+    }
+    return false;
+}
+
+export const deleteToken = () => {
+    localStorage.removeItem('token');
+    window.location.href = '/';
 }

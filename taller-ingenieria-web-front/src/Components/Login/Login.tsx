@@ -1,8 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Login.css";
 import { login } from "../../shared/services/AuthService";
+import Swal from 'sweetalert2'
+import withReactContent from "sweetalert2-react-content";
+import { isAuthenticated } from "../../utils/Authentication";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const MySwal = withReactContent(Swal);
+
+  const navigate = useNavigate();
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorUser, setErrorUser] = useState("");
@@ -10,8 +18,34 @@ const Login = () => {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     if (validateFields()) {
-      await login({ username, password });
-    }
+      MySwal.fire({
+        title: <p>Iniciando sesion, esto puede tardar un poco</p>,
+        didOpen: () => {
+          MySwal.showLoading()
+        login({ username, password }).then((response) => {
+          console.log(response);
+          localStorage.setItem("token", response.token);
+          localStorage.setItem("username", response.username);
+          localStorage.setItem("role", response.role);
+          setTimeout(() => {
+          MySwal.close();
+            window.location.href = "/";
+          }, 1000)
+        }).catch((error) => {
+          console.log(error);
+          MySwal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Usuario o contraseña incorrectos',
+          })
+          return;
+        }).then(() => {
+         
+        })
+        ;
+      },
+    })
+  }
   };
 
   const validateFields = () => {
@@ -28,6 +62,13 @@ const Login = () => {
     seterrorPassword("");
     return true;
   };
+
+  useEffect(() => {
+    if(isAuthenticated()){
+      navigate("/");
+    }
+  }, [])
+  
 
   return (
     <main>
