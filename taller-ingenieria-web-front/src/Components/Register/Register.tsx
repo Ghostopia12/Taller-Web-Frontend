@@ -32,10 +32,6 @@ const Register = () => {
           register({email, username, password, role : selectedRole })
             .then((response) => {
               console.log(response);
-              localStorage.setItem("token", response.token);
-              localStorage.setItem("username", response.username);
-              localStorage.setItem("role", response.role);
-              window.location.href = "/";
             })
             .catch((error) => {
               console.log(error);
@@ -44,6 +40,8 @@ const Register = () => {
                 title: "Oops...",
                 text: "Usuario o contraseña incorrectos",
               });
+            }).then(() => {
+              MySwal.close();
             });
         },
       });

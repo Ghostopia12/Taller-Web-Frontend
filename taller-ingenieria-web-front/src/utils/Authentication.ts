@@ -10,3 +10,11 @@ export const deleteToken = () => {
     localStorage.removeItem('token');
     window.location.href = '/';
 }
+
+export const isAdmin = () => {
+    const role = localStorage.getItem('role');
+    if (role == 'ADMIN') {
+        return true;
+    }
+    return false;
+}
