@@ -12,10 +12,19 @@ interface RegisterCredentials {
   role: string;
 }
 
+function getHeaders() {
+  const token = localStorage.getItem("token");
+  return {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+}
+
 export const login = async (credentials: LoginCredentials) => {
   try {
     const response = await axios.post(
-      "http://localhost:8080/api/auth/authenticate",
+      "http://localhost:8080/api/users/login",
       credentials
     );
     return response.data;
@@ -27,8 +36,8 @@ export const login = async (credentials: LoginCredentials) => {
 export const register = async (credentials: RegisterCredentials) => {
   try {
     const response = await axios.post(
-      "http://localhost:8080/api/auth/register",
-      credentials
+      "http://localhost:8080/api/users/create",
+      credentials, getHeaders()
     );
     return response.data;
   } catch (error) {
